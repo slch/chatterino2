@@ -44,7 +44,7 @@ public:
     CompletionModel(Channel &channel);
 
     virtual int columnCount(const QModelIndex &) const override;
-    virtual QVariant data(const QModelIndex &index, int) const override;
+    virtual QVariant data(const QModelIndex &index, int role) const override;
     virtual int rowCount(const QModelIndex &) const override;
 
     void refresh(const QString &prefix, bool isFirstWord = false);

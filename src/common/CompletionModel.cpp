@@ -61,13 +61,20 @@ int CompletionModel::columnCount(const QModelIndex &) const
     return 1;
 }
 
-QVariant CompletionModel::data(const QModelIndex &index, int) const
+QVariant CompletionModel::data(const QModelIndex &index, int role) const
 {
     std::lock_guard<std::mutex> lock(this->itemsMutex_);
 
-    auto it = this->items_.begin();
-    std::advance(it, index.row());
-    return QVariant(it->string);
+    static QStandardItem *item = new QStandardItem;
+
+    if (role == Qt::DisplayRole || role == Qt::EditRole)
+    {
+        auto it = this->items_.begin();
+        std::advance(it, index.row());
+        return QVariant(it->string);
+    }
+
+    return QVariant();
 }
 
 int CompletionModel::rowCount(const QModelIndex &) const

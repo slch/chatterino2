@@ -205,15 +205,13 @@ void ResizingTextEdit::setCompleter(QCompleter *c)
         QObject::disconnect(this->completer_, nullptr, this, nullptr);
     }
 
-    this->completer_ = c;
-
-    if (!this->completer_)
+    if (!(this->completer_ = c))
     {
         return;
     }
 
     this->completer_->setWidget(this);
-    this->completer_->setCompletionMode(QCompleter::InlineCompletion);
+    this->completer_->setCompletionMode(QCompleter::PopupCompletion);
     this->completer_->setCaseSensitivity(Qt::CaseInsensitive);
 
     if (getSettings()->prefixOnlyEmoteCompletion)
