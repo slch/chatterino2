@@ -6,6 +6,7 @@
 #include "util/RapidjsonHelpers.hpp"
 
 #include <rapidjson/error/en.h>
+#include <util/DebugCount.hpp>
 
 #include <exception>
 #include <thread>
@@ -71,6 +72,7 @@ namespace detail {
 
         std::string payload = rj::stringify(message);
         sentMessages[uuid] = payload;
+        DebugCount::increase("pubsub sent messages");
 
         this->send(payload.c_str());
 
@@ -108,6 +110,7 @@ namespace detail {
 
         std::string payload = rj::stringify(message);
         sentMessages[uuid] = payload;
+        DebugCount::increase("pubsub sent messages");
 
         this->send(payload.c_str());
     }
