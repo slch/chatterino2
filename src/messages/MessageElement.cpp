@@ -553,9 +553,6 @@ void IrcTextElement::addToContainer(MessageLayoutContainer &container,
         QFontMetrics metrics =
             app->fonts->getFontMetrics(this->style_, container.getScale());
 
-        int fg = -1;
-        int bg = -1;
-
         for (auto &word : this->words_)
         {
             auto getTextLayoutElement = [&](QString text,
