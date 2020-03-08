@@ -280,7 +280,8 @@ public:
                         MessageElementFlags flags) override;
 };
 
-// contains a text, it will split it into words
+// contains a full message string that's split into words on space and parses irc colors that are then put into segments
+// these segments are later passed to "MultiColorTextLayoutElement" elements to be rendered :)
 class IrcTextElement : public MessageElement
 {
 public:
